@@ -6,6 +6,25 @@ This document is the source of truth for continuing the Kaflah project on anothe
 
 Read this file first, then inspect the site/ source and run the verification commands below. Do not repeat the Instagram collection or redesign the product from scratch unless a new requirement explicitly asks for it.
 
+## Chat/session ID note
+
+The Codex assistant cannot read or expose the platform's internal chat/session ID. The durable continuation mechanism is this handoff file plus the private GitHub repository. On a new machine, clone the repository and give Codex the resume prompt at the end of this file.
+
+## Latest handoff update — 2026-08-22
+
+This file was refreshed for a machine transfer. The previous work completed in this conversation was:
+
+1. Cloned the public Instaloader repository from https://github.com/instaloader/instaloader.
+2. Collected public profile data for https://www.instagram.com/kaflah.organisation using the cloned Instaloader project.
+3. Stored normalized/raw metadata in profile_data/ and downloaded media in profile_media/.
+4. Designed and implemented a white/ivory-first Kaflah homepage in site/ using Vite, React, TypeScript, Framer Motion, and Vitest.
+5. Added the source-backed content transformation boundary from profile_data/posts.json to typed generated frontend content.
+6. Created a private GitHub repository named kaflah under the authenticated account int-abd-5.
+7. Pushed the Kaflah project to the repository's main branch while preserving the original Instaloader origin remote.
+8. Added this handoff document to the repository so future Codex sessions can continue from the same context.
+
+At the time of this update, the local branch is kaflah-site, it tracks kaflah/main, and the last pushed commit is the handoff update. The working tree should be checked before making further edits.
+
 ## Product goal
 
 Build a public-facing homepage for Kaflah Organisation, a youth-led Pakistani nonprofit, using the organisation's real public Instagram content and downloaded media.
@@ -229,4 +248,3 @@ Never use git add -A for this project without reviewing every path first, becaus
 ~~~text
 I am continuing the Kaflah project. Read Kaflah_Project_Handoff.md first, then inspect the current git status and the site/ source. The goal is the private repo https://github.com/int-abd-5/kaflah, a Vite + React + TypeScript homepage for Kaflah Organisation built from verified public Instagram content. Do not redo the scraper or redesign from scratch. First run the site tests and production build, report the current state, and then work on the next highest-priority item from the handoff while preserving the white/ivory editorial direction, source traceability, accessibility, and no-invented-impact rules.
 ~~~
-
