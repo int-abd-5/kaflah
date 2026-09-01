@@ -23,7 +23,48 @@ This file was refreshed for a machine transfer. The previous work completed in t
 7. Pushed the Kaflah project to the repository's main branch while preserving the original Instaloader origin remote.
 8. Added this handoff document to the repository so future Codex sessions can continue from the same context.
 
-At the time of this update, the local branch is kaflah-site, it tracks kaflah/main, and the last pushed commit is the handoff update. The working tree should be checked before making further edits.
+At the time of this update, the local branch is kaflah-site and it tracks kaflah/main. The working tree should be checked before making further edits.
+## Graphify setup and graph artifacts
+
+Graphify was installed on the development PC on 2026-09-01 using the official package name graphifyy. The executable is graphify.
+
+The project-scoped Codex task was installed from the repository root with:
+
+~~~powershell
+uv tool install graphifyy
+graphify codex install --project
+~~~
+
+This registered the Graphify instructions in AGENTS.md, installed the project skill under .codex/skills/graphify/, and registered .codex/hooks.json. These files are part of the project context and should remain committed.
+
+The graph was generated from the repository root with the local, no-API-key mode:
+
+~~~powershell
+graphify extract . --code-only
+graphify cluster-only . --no-label
+~~~
+
+The graph currently contains 893 nodes, 1,743 edges, and 62 communities. Generated portable artifacts are in graphify-out/:
+
+- graph.json — queryable graph data.
+- graph.html — interactive browser visualization.
+- GRAPH_REPORT.md — plain-language architecture report.
+- .graphify_analysis.json and manifest.json — Graphify analysis/update metadata.
+
+graphify-out/cache/ is local cache data and is ignored by Git. The code-only build intentionally skipped non-code docs/images/media because the full semantic pass needs a configured semantic backend. The file site/src/styles/tokens.css was flagged as potentially sensitive by the filename detector and was skipped from the graph; this is a false positive for design tokens, not a secret. If full document/media semantics are needed later, review the Graphify backend configuration first and keep credentials out of the repository.
+
+Useful commands from the repository root:
+
+~~~powershell
+graphify god-nodes --top 10
+graphify query "How does the Kaflah site content flow from scraped posts into the React homepage?"
+graphify explain "build-content.mjs"
+graphify path "build-content.mjs" "Hero.tsx"
+graphify update .
+~~~
+
+On another machine, install Graphify with uv, clone this repository, and run the project-scoped Codex install if the .codex/ files are missing. The committed graph can be queried immediately; run graphify update . after code changes.
+
 
 ## Product goal
 
